@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "# #",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:netherrack"
+        }
+    },
+    "result": {
+        "item": "netheradditions:netherrack_furnace",
+        "count": 1
+    },
+    "group": "decoration"
+}

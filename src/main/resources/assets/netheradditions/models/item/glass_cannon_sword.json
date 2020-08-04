@@ -1,0 +1,7 @@
+{
+  "parent": "item/handheld",
+  "textures":
+  {
+    "layer0": "netheradditions:item/glass_cannon_sword"
+  }
+}

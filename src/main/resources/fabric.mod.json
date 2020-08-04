@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "netheradditions",
+  "version": "${version}",
+
+  "name": "Nether Additions",
+  "description": "Adds more to the nether to allow complete survival and progression in the nether",
+  "authors": [
+    "Error003"
+  ],
+  "contact": {
+    "homepage": "",
+    "sources": ""
+  },
+
+  "license": "CC0-1.0",
+  "icon": "assets/netheradditions/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.nether.additions.NetherAdditions"
+    ]
+  },
+  "mixins": [
+
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.7.4",
+    "fabric": "*",
+    "minecraft": "1.16.x"
+  },
+  "suggests": {
+    "flamingo": "*"
+  }
+}

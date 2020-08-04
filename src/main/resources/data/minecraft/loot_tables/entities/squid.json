@@ -1,0 +1,19 @@
+{
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "netheradditions:calamari",
+          "conditions": [
+            {
+              "condition": "minecraft:killed_by_player",
+              "inverse": false
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

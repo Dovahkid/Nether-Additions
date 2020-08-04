@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "##",
+        "#/",
+        " /"
+    ],
+    "key": {
+        "#": {
+            "item": "netheradditions:purple_diamond"
+        },
+        "/": {
+            "item": "minecraft:stick"
+        }
+    },
+    "result": {
+        "item": "netheradditions:purple_diamond_axe",
+        "count": 1
+    }
+}
