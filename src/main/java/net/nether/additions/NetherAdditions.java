@@ -61,7 +61,7 @@ public class NetherAdditions implements ModInitializer{
 
 
     public static final Block NETHERRACK_FURNACE = new CustomFurnaceBlock(FabricBlockSettings.copy(Blocks.FURNACE));
-    public static BlockEntityType CUSTOM_FURNACE_ENTITY;
+    public static BlockEntityType<CustomFurnaceBlockEntity> CUSTOM_FURNACE_ENTITY;
 
 
     private void handleBiome(Biome biome)
@@ -101,7 +101,7 @@ public class NetherAdditions implements ModInitializer{
         Registry.register(Registry.BLOCK, new Identifier(MODID, "netherrack_furnace"), NETHERRACK_FURNACE);
         Registry.register(Registry.ITEM, new Identifier(MODID, "netherrack_furnace"),
                 new BlockItem(NETHERRACK_FURNACE, new Item.Settings().group(ItemGroup.DECORATIONS)));
-        CUSTOM_FURNACE_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, MODID, BlockEntityType.Builder.create(CustomFurnaceBlockEntity::new, NETHERRACK_FURNACE).build(null));
+        CUSTOM_FURNACE_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(MODID,"nether_furnace_blockentity"), BlockEntityType.Builder.create(CustomFurnaceBlockEntity::new, NETHERRACK_FURNACE).build(null));
 
         // Glow Stone Fuel
         Registry.register(Registry.ITEM, new Identifier(MODID, "glowstone_fuel"), GLOWSTONE_FUEL);
