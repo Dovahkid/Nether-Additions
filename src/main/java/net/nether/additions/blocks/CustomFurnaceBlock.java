@@ -38,7 +38,7 @@ public class CustomFurnaceBlock extends AbstractFurnaceBlock{
 
     public CustomFurnaceBlock(AbstractBlock.Settings settings) {
         super(settings);
-        this.setDefaultState((BlockState)((BlockState)((BlockState)this.stateManager.getDefaultState()).with(FACING, Direction.NORTH)).with(LIT, false));
+        this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH).with(LIT, false));
     }
 
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
@@ -52,7 +52,7 @@ public class CustomFurnaceBlock extends AbstractFurnaceBlock{
 
     protected void openScreen(World world, BlockPos pos, PlayerEntity player) {
         BlockEntity blockEntity = world.getBlockEntity(pos);
-        if (blockEntity instanceof FurnaceBlockEntity) {
+        if (blockEntity instanceof CustomFurnaceBlockEntity) {
             player.openHandledScreen((NamedScreenHandlerFactory)blockEntity);
             player.incrementStat(Stats.INTERACT_WITH_FURNACE);
         }
@@ -60,7 +60,7 @@ public class CustomFurnaceBlock extends AbstractFurnaceBlock{
     }
 
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return (BlockState)this.getDefaultState().with(FACING, ctx.getPlayerFacing().getOpposite());
+        return this.getDefaultState().with(FACING, ctx.getPlayerFacing().getOpposite());
     }
 
     public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
@@ -77,7 +77,7 @@ public class CustomFurnaceBlock extends AbstractFurnaceBlock{
         if (!state.isOf(newState.getBlock())) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
             if (blockEntity instanceof CustomFurnaceBlockEntity) {
-                ItemScatterer.spawn(world, (BlockPos)pos, (Inventory)((CustomFurnaceBlockEntity)blockEntity));
+                ItemScatterer.spawn(world, pos, (Inventory)blockEntity);
                 ((CustomFurnaceBlockEntity)blockEntity).method_27354(world, Vec3d.ofCenter(pos));
                 world.updateComparators(pos, this);
             }
@@ -105,11 +105,11 @@ public class CustomFurnaceBlock extends AbstractFurnaceBlock{
     }
 
     public BlockState rotate(BlockState state, BlockRotation rotation) {
-        return (BlockState)state.with(FACING, rotation.rotate((Direction)state.get(FACING)));
+        return state.with(FACING, rotation.rotate(state.get(FACING)));
     }
 
     public BlockState mirror(BlockState state, BlockMirror mirror) {
-        return state.rotate(mirror.getRotation((Direction)state.get(FACING)));
+        return state.rotate(mirror.getRotation(state.get(FACING)));
     }
 
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
@@ -118,15 +118,15 @@ public class CustomFurnaceBlock extends AbstractFurnaceBlock{
 
     @Environment(EnvType.CLIENT)
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-        if ((Boolean)state.get(LIT)) {
+        if (state.get(LIT)) {
             double d = (double)pos.getX() + 0.5D;
-            double e = (double)pos.getY();
+            double e = pos.getY();
             double f = (double)pos.getZ() + 0.5D;
             if (random.nextDouble() < 0.1D) {
                 world.playSound(d, e, f, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
             }
 
-            Direction direction = (Direction)state.get(FACING);
+            Direction direction = state.get(FACING);
             Direction.Axis axis = direction.getAxis();
             double g = 0.52D;
             double h = random.nextDouble() * 0.6D - 0.3D;
